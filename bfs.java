@@ -9,6 +9,7 @@ public class bfs{
 			ArrayList<String> open=new ArrayList<String>();  
 			ArrayList<String> close=new ArrayList<String>();  
 			
+			
 			System.out.println("Enter Root Node Name: ");
 			String root = sc.next();		   //root
 			sc.nextLine();
@@ -34,18 +35,49 @@ public class bfs{
 				tree.put(childArray[i],child);
 				}
 				
-				
+			}
 			System.out.println("Enter Goal Node Name: ");
 			String goal = sc.next();		
 			sc.nextLine();
 			
-			if (root == goal){
+			if (root.equals(goal)){
 				System.out.println("Success");
 				}	
+			
+			else{
+					close.add(root);
+					
+				for (int j = 0; j < childArray.length; j++)
+				{
+						open.add(childArray[j]);
+				}
+			}	
+			System.out.println(open+" "+close);
+			ListIterator<String> open_itr=open.listIterator();  
+			ListIterator<String> close_itr=close.listIterator();  
+			while(open_itr.hasNext()){  
+				System.out.println(open_itr.next());  
+				
+				String tmp = open_itr.next();
+				if (tmp.equals(goal)){
+						System.out.println("Success");
+						break;
+					}
+					
+				else{
+					close.add(tmp);
+					root_child = tree.get(tmp).toString();
+					childArray = root_child.split(" ");
+					
+					for (String childs : childArray){
+					open.add(child);
+					}
+					}
+			}  
 				
 			
 				
 		}
 			
 		}
-} 
+ 
